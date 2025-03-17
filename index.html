@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Website with Motion Graphics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- p5.js Canvas -->
+  <div id="sketch-container"></div>
+
+  <!-- Overlay Website Content -->
+  <div class="website-overlay">
+    <header class="header">
+      <h1>Procedurally Animated Graphics</h1>
+      <p>p5.js using WEBGL mode to create dynamic website backgrounds</p>
+    </header>
+
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="content">
+      <!-- Content will be dynamically inserted here -->
+    </section>
+  </div>
+
+  <!-- External JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="sketch.js"></script>
+  <script src="navigation.js"></script>
+</body>
+</html>
