@@ -279,7 +279,7 @@ function getEnhancedColor(col) {
   return color(r, g, b, 200);
 }
 
-// Make this function available to the global scope for interactivity
+// Make functions available to the global scope for interactivity
 window.generateFallbackColors = function() {
   // Generate a vibrant color palette
   let colors = [];
@@ -314,6 +314,27 @@ window.generateFallbackColors = function() {
   return colors;
 }
 
+// Function to optimize for mobile
+window.reduceAnimationForMobile = function() {
+  // Reduce complexity for mobile devices
+  fr = 30; // Lower framerate
+  frameRate(fr);
+  pixelDensity(1); // Lower pixel density
+  
+  // Reduce number of structures
+  maxStructures = 80;
+  
+  // Remove structures to match new max
+  while (structures.length > maxStructures) {
+    structures.pop();
+  }
+  
+  // Make structures smaller on mobile
+  for (let structure of structures) {
+    structure.scaleFactor *= 0.8;
+  }
+}
+
 // For backward compatibility
 function generateFallbackColors() {
   return window.generateFallbackColors();
@@ -342,6 +363,20 @@ function hslToHex(h, s, l) {
 // Handle window resizing
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  
+  // Adjust the number of structures based on screen size
+  // Fewer structures on mobile for better performance
+  if (windowWidth < 768) {
+    maxStructures = 100; // Reduce structures on mobile
+    while (structures.length > maxStructures) {
+      structures.pop(); // Remove excess structures
+    }
+  } else {
+    maxStructures = 300; // Original number for desktop
+  }
+  
+  // Force redraw
+  redraw();
 }
 
 // Handle mouse clicks for interactive elements
