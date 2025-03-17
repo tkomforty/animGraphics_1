@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
       content: 'This demo showcases the power of p5.js with WEBGL to create immersive, interactive backgrounds. The colorful cubes are procedurally generated with various movement patterns and transitions.'
     },
     'gallery': {
-      title: 'Animation Gallery',
-      content: 'Browse our collection of procedural animations and interactive visuals. Each animation features unique algorithms and color palettes designed to enhance user experience.'
+      title: 'Gallery',
+      content: 'This is where a gallery of products could be displayed. Data is loaded dynamically through a .js file'
     },
     'contact': {
       title: 'Get In Touch',
-      content: 'Interested in implementing beautiful motion graphics for your website? Contact us to discuss how we can bring your digital presence to life with custom animations.'
+      content: 'Interested in implementing beautiful procedural graphics for your website? Contact me to discuss how we can bring your digital presence to life @ tkomforty@gmail.com.'
     }
   };
   
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Get the section id from the link text
-      const sectionId = this.textContent.toLowerCase();
+      // Get the section id from the href attribute
+      const sectionId = this.getAttribute('href').substring(1);
       
       // Remove active class from all links and sections
       navLinks.forEach(link => link.classList.remove('active'));
@@ -80,6 +80,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 150);
     });
   });
+  
+  // Handle mobile optimization
+  function checkMobileView() {
+    if (window.innerWidth <= 768) {
+      // Adjust animation performance for mobile
+      if (window.reduceAnimationForMobile && typeof window.reduceAnimationForMobile === 'function') {
+        window.reduceAnimationForMobile();
+      }
+    }
+  }
+  
+  // Check on load and resize
+  checkMobileView();
+  window.addEventListener('resize', checkMobileView);
 });
 
 // Function that can be called from sketch.js to refresh colors
