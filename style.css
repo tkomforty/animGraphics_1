@@ -43,7 +43,7 @@ body {
   padding: 30px 40px;
   border-radius: 10px;
   backdrop-filter: blur(3px);
-  width: 80%;
+  width: 90%;
   max-width: 800px;
 }
 
@@ -71,7 +71,7 @@ body {
   padding: 15px 30px;
   border-radius: 10px;
   backdrop-filter: blur(3px);
-  width: 80%;
+  width: 90%;
   max-width: 800px;
 }
 
@@ -80,6 +80,11 @@ body {
   display: flex;
   justify-content: center;
   gap: 2em;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.nav-bar li {
+  padding: 5px 0;
 }
 
 .nav-bar a {
@@ -111,23 +116,9 @@ body {
   padding: 30px 40px;
   border-radius: 10px;
   backdrop-filter: blur(3px);
-  width: 80%;
+  width: 90%;
   max-width: 800px;
   transition: all 0.5s ease-in-out;
-}
-
-/* Content sections - only one visible at a time */
-.content-section {
-  display: none;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.content-section.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .content h2 {
@@ -146,6 +137,20 @@ body {
   margin: 0 auto;
 }
 
+/* Content sections - only one visible at a time */
+.content-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.content-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Animation for Fade In */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
@@ -156,4 +161,97 @@ body {
 @keyframes moveBackground {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 100%; }
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px;
+    width: 95%;
+    margin-top: 40px;
+  }
+  
+  .header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1.1em;
+  }
+  
+  .nav-bar {
+    padding: 10px;
+    width: 95%;
+  }
+  
+  .nav-bar ul {
+    gap: 1em;
+  }
+  
+  .content {
+    padding: 20px;
+    width: 95%;
+    margin-bottom: 40px;
+  }
+  
+  .content h2 {
+    font-size: 1.8em;
+  }
+  
+  .content p {
+    font-size: 1.1em;
+  }
+  
+  /* Adjust website overlay for mobile */
+  .website-overlay {
+    justify-content: space-between;
+    padding: 10px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.7em;
+  }
+  
+  .header p {
+    font-size: 1em;
+  }
+  
+  .nav-bar {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .nav-bar ul {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0.5em;
+  }
+  
+  .nav-bar a {
+    font-size: 0.9em;
+    padding: 5px;
+  }
+  
+  .content h2 {
+    font-size: 1.5em;
+  }
+  
+  .content p {
+    font-size: 1em;
+  }
+}
+
+/* Fix canvas positioning */
+#sketch-container, canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
 }
